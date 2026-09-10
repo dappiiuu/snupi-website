@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>halooo snupiii 💙</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#60a5fa,#93c5fd,#bfdbfe);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.card{
+width:90%;
+max-width:700px;
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+color:white;
+box-shadow:0 0 25px rgba(0,0,0,.15);
+z-index:10;
+}
+
+h1,h2{
+margin-bottom:20px;
+}
+
+p{
+font-size:20px;
+margin-bottom:20px;
+}
+
+.btn{
+padding:12px 24px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-size:16px;
+margin:8px;
+font-weight:bold;
+background:white;
+color:#2563eb;
+}
+
+#game,
+#akhir{
+display:none;
+}
+
+.cloud{
+position:fixed;
+pointer-events:none;
+opacity:.8;
+font-size:60px;
+animation:awan linear infinite;
+}
+
+@keyframes awan{
+from{
+transform:translateX(-200px);
+}
+to{
+transform:translateX(calc(100vw + 200px));
+}
+}
+</style>
+</head>
+<body>
+
+<audio id="soundKabur">
+<source src="SnapTik.Net_7507258656941952278.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+<div id="awal">
+<h1>☁️ halooo snupiii 💙</h1>
+<p>akuu mau nanyaa...</p>
+
+<button class="btn" onclick="mulai()">
+lanjut ke pertanyaan 💌
+</button>
+</div>
+
+<div id="game">
+
+<h2 id="judul">
+menurut kamuu akuu baikk gaa?
+</h2>
+
+<div id="opsi">
+
+<button class="btn" onclick="pertanyaan2()">
+baik bangett 💙
+</button>
+
+<button class="btn" id="kabur1">
+engga 🙄
+</button>
+
+</div>
+
+</div>
+
+<div id="akhir">
+
+<h1>🎉 yeayyy</h1>
+
+<p>
+berarti menurut snupiii akuu baik bangett dan ga ngeselin 😎💙
+<br><br>
+makasii udah jawab yaaaa 🩷
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+function mulai(){
+document.getElementById("awal").style.display="none";
+document.getElementById("game").style.display="block";
+}
+
+function pertanyaan2(){
+
+document.getElementById("judul").innerHTML =
+"akuu ngeselin gaa?";
+
+document.getElementById("opsi").innerHTML = `
+<button class="btn" onclick="selesai()">
+ngga 💙
+</button>
+
+<button class="btn" id="kabur2">
+kadang-kadang 😏
+</button>
+`;
+
+setTimeout(pasangKabur2,100);
+}
+
+function selesai(){
+document.getElementById("game").style.display="none";
+document.getElementById("akhir").style.display="block";
+}
+
+function kabur(btn){
+
+const suara=document.getElementById("soundKabur");
+
+suara.pause();
+suara.currentTime=0;
+suara.play().catch(()=>{});
+
+const x=(Math.random()*300)-150;
+const y=(Math.random()*200)-100;
+
+btn.style.transform=
+`translate(${x}px,${y}px)`;
+}
+
+const btn1=document.getElementById("kabur1");
+
+btn1.addEventListener("mouseenter",()=>{
+kabur(btn1);
+});
+
+btn1.addEventListener("touchstart",(e)=>{
+e.preventDefault();
+kabur(btn1);
+});
+
+function pasangKabur2(){
+
+const btn2=document.getElementById("kabur2");
+
+btn2.addEventListener("mouseenter",()=>{
+kabur(btn2);
+});
+
+btn2.addEventListener("touchstart",(e)=>{
+e.preventDefault();
+kabur(btn2);
+});
+}
+
+function buatAwan(){
+
+const awan=document.createElement("div");
+
+awan.className="cloud";
+awan.innerHTML="☁️";
+
+awan.style.top=Math.random()*70+"vh";
+
+awan.style.fontSize=
+(Math.random()*40+40)+"px";
+
+awan.style.animationDuration=
+(Math.random()*20+20)+"s";
+
+document.body.appendChild(awan);
+
+setTimeout(()=>{
+awan.remove();
+},45000);
+}
+
+setInterval(buatAwan,3500);
+
+for(let i=0;i<5;i++){
+setTimeout(buatAwan,i*1000);
+}
+
+</script>
+
+</body>
+</html>
